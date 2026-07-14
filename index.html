@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sweet.site</title>
+<meta charset="UTF-8">
+<title>🎁 Open Gift</title>
+<style>
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:#111;
+  color:white;
+  font-family:Arial,sans-serif;
+  flex-direction:column;
+}
+button{
+  padding:15px 30px;
+  font-size:22px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
 </head>
-<body style="text-align:center;font-family:Arial;margin-top:100px;">
-  <h1>Welcome to Sweet.site ❤️</h1>
-  <p>My first website created from my phone.</p>
+<body>
 
-  <button onclick="alert('Hello Sohit!')">
-    Click Me
-  </button>
+<h1>🎁 Secret Gift</h1>
+<p>Click the button below to open your gift.</p>
+
+<button onclick="prank()">Open Gift</button>
+
+<script>
+function prank(){
+  alert("😂 Got you! This was just a harmless prank.");
+}
+</script>
+
 </body>
 </html>
