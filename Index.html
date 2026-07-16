@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sweet.site</title>
+<title>🎁 Open Gift</title>
 </head>
-<body style="text-align:center;font-family:Arial;margin-top:100px;">
-  <h1>Welcome to Sweet.site ❤️</h1>
-  <p>My first website created from my phone.</p>
+<body style="text-align:center;font-family:Arial;background:#111;color:white;padding-top:100px;">
 
-  <button onclick="alert('Hello Sohit!')">
-    Click Me
-  </button>
+<h1>🎁 Surprise Gift 🎁</h1>
+
+<button onclick="playPrank()" style="padding:15px 30px;font-size:20px;">
+Open Gift
+</button>
+
+<audio id="sound">
+  <source src="Kiya_Kiya_8D_Song___Welcome___Akshay_Kumar___Katrina_Kaif___Anil_Kapoor____8D_Tunes_Bollywood___8D(256k).mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playPrank(){
+  document.getElementById("sound").play();
+  alert("😂 Got you! This was just a harmless prank!");
+}
+</script>
+
 </body>
 </html>
