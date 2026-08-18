@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>🎁 Surprise Gift</title>
 
 <style>
@@ -25,23 +24,20 @@ body {
 
 .container {
   text-align: center;
-  position: relative;
   z-index: 5;
 }
 
 h1 {
   font-size: 30px;
-  margin-bottom: 40px;
   animation: glow 2s infinite alternate;
 }
 
 .gift {
   width: 180px;
-  height: 140px;
+  height: 150px;
   position: relative;
-  margin: auto;
+  margin: 45px auto 0;
   cursor: pointer;
-  animation: bounce 1.5s infinite;
 }
 
 .box {
@@ -51,7 +47,7 @@ h1 {
   height: 110px;
   background: #ff3f81;
   border-radius: 8px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.2);
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
 }
 
 .box::after {
@@ -65,14 +61,14 @@ h1 {
 
 .lid {
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: -10px;
   width: 200px;
   height: 45px;
   background: #ff1765;
   border-radius: 8px;
-  z-index: 2;
-  transition: .8s;
+  z-index: 4;
+  transition: 0.8s ease;
 }
 
 .lid::after {
@@ -89,19 +85,19 @@ h1 {
   width: 30px;
   height: 50px;
   background: #ffd700;
-  top: -30px;
+  top: -15px;
   left: 75px;
   border-radius: 50%;
-  z-index: 3;
+  z-index: 5;
 }
 
 .open .lid {
-  transform: translateY(-100px) rotate(-8deg);
+  transform: translateY(-110px) rotate(-10deg);
 }
 
 button {
   margin-top: 35px;
-  padding: 14px 28px;
+  padding: 14px 30px;
   border: none;
   border-radius: 30px;
   background: white;
@@ -112,46 +108,77 @@ button {
   box-shadow: 0 8px 20px rgba(0,0,0,.2);
 }
 
-button:hover {
-  transform: scale(1.08);
+button:active {
+  transform: scale(.95);
 }
+
+/* GORILLA */
+
+.gorilla {
+  position: fixed;
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%);
+  font-size: 130px;
+  z-index: 50;
+  animation: jump 1.4s ease-out forwards;
+}
+
+@keyframes jump {
+  0% {
+    transform: translate(-50%, 180px) scale(.2);
+    opacity: 0;
+  }
+
+  35% {
+    transform: translate(-50%, -100px) scale(1.3);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(-50%, 20px) scale(1);
+  }
+
+  75% {
+    transform: translate(-50%, -30px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.gorilla-text {
+  position: fixed;
+  left: 50%;
+  top: 62%;
+  transform: translateX(-50%);
+  z-index: 51;
+  font-size: 35px;
+  font-weight: bold;
+  animation: textPop .6s .8s both;
+}
+
+@keyframes textPop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* MESSAGE */
 
 .message {
   display: none;
   margin-top: 30px;
   font-size: 24px;
   font-weight: bold;
-  animation: appear 1s ease forwards;
-}
-
-/* PRANK SCREEN */
-
-#prank {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.92);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  animation: prankAppear .5s ease;
-}
-
-.prank-hand {
-  font-size: 120px;
-  animation: shake .5s infinite;
-}
-
-#prank h2 {
-  font-size: 42px;
-  color: white;
-  margin: 10px;
-}
-
-#prank p {
-  font-size: 20px;
-  color: white;
+  animation: appear 1s ease;
 }
 
 /* CONFETTI */
@@ -161,19 +188,26 @@ button:hover {
   width: 10px;
   height: 10px;
   top: -20px;
+  z-index: 100;
   animation: fall 3s linear forwards;
-  pointer-events: none;
 }
 
-/* ANIMATIONS */
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
 
-@keyframes bounce {
-  0%,100% {
-    transform: translateY(0);
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(.4);
   }
 
-  50% {
-    transform: translateY(-15px);
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -186,47 +220,6 @@ button:hover {
     text-shadow: 0 0 20px white;
   }
 }
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: scale(.5);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes prankAppear {
-  from {
-    opacity: 0;
-    transform: scale(.5);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes shake {
-  0%,100% {
-    transform: rotate(-10deg);
-  }
-
-  50% {
-    transform: rotate(10deg);
-  }
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(720deg);
-    opacity: 0;
-  }
-}
 </style>
 </head>
 
@@ -237,9 +230,13 @@ button:hover {
   <h1>✨ I Have a Surprise For You ✨</h1>
 
   <div class="gift" id="gift">
+
     <div class="ribbon"></div>
+
     <div class="lid"></div>
+
     <div class="box"></div>
+
   </div>
 
   <button onclick="openGift()">
@@ -263,69 +260,15 @@ function openGift() {
 
   gift.classList.add("open");
 
-  /* Show prank */
+  /* Gorilla jumps out */
 
-  setTimeout(() => {
+  setTimeout(function() {
 
-    const prank = document.createElement("div");
+    const gorilla = document.createElement("div");
 
-    prank.id = "prank";
+    gorilla.className = "gorilla";
+    gorilla.innerHTML = "🦍";
 
-    prank.innerHTML = `
-      <div class="prank-hand">🖕</div>
-      <h2>😂 GOTCHA!</h2>
-      <p>Abhi asli surprise baaki hai...</p>
-    `;
+    document.body.appendChild(gorilla);
 
-    document.body.appendChild(prank);
-
-    /* Remove prank after 2.5 seconds */
-
-    setTimeout(() => {
-
-      prank.remove();
-
-      message.style.display = "block";
-
-    }, 2500);
-
-  }, 800);
-
-
-  /* Confetti */
-
-  for (let i = 0; i < 100; i++) {
-
-    const confetti = document.createElement("div");
-
-    confetti.className = "confetti";
-
-    confetti.style.left =
-      Math.random() * 100 + "vw";
-
-    confetti.style.background =
-      [
-        "#ff1744",
-        "#ffd700",
-        "#00e5ff",
-        "#7c4dff",
-        "#69f0ae"
-      ][Math.floor(Math.random() * 5)];
-
-    confetti.style.animationDelay =
-      Math.random() * 1.5 + "s";
-
-    document.body.appendChild(confetti);
-
-    setTimeout(() => {
-      confetti.remove();
-    }, 4000);
-
-  }
-
-}
-
-</script>
-
-</body>
-</html>
+    const text = document
