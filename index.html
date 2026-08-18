@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎁 A Surprise For You</title>
+
+<title>🎁 Surprise Gift</title>
 
 <style>
 * {
@@ -29,8 +30,8 @@ body {
 }
 
 h1 {
-  font-size: 32px;
-  margin-bottom: 35px;
+  font-size: 30px;
+  margin-bottom: 40px;
   animation: glow 2s infinite alternate;
 }
 
@@ -120,16 +121,40 @@ button:hover {
   margin-top: 30px;
   font-size: 24px;
   font-weight: bold;
-  animation: appear 1.5s ease forwards;
+  animation: appear 1s ease forwards;
 }
 
-.heart {
+/* PRANK SCREEN */
+
+#prank {
   position: fixed;
-  bottom: -30px;
-  font-size: 25px;
-  animation: float 5s linear forwards;
-  pointer-events: none;
+  inset: 0;
+  background: rgba(0,0,0,.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: prankAppear .5s ease;
 }
+
+.prank-hand {
+  font-size: 120px;
+  animation: shake .5s infinite;
+}
+
+#prank h2 {
+  font-size: 42px;
+  color: white;
+  margin: 10px;
+}
+
+#prank p {
+  font-size: 20px;
+  color: white;
+}
+
+/* CONFETTI */
 
 .confetti {
   position: fixed;
@@ -140,14 +165,26 @@ button:hover {
   pointer-events: none;
 }
 
+/* ANIMATIONS */
+
 @keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 5px white; }
-  to { text-shadow: 0 0 20px white; }
+  from {
+    text-shadow: 0 0 5px white;
+  }
+
+  to {
+    text-shadow: 0 0 20px white;
+  }
 }
 
 @keyframes appear {
@@ -155,16 +192,32 @@ button:hover {
     opacity: 0;
     transform: scale(.5);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
-@keyframes float {
-  to {
-    transform: translateY(-110vh) rotate(360deg);
+@keyframes prankAppear {
+  from {
     opacity: 0;
+    transform: scale(.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%,100% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
   }
 }
 
@@ -189,7 +242,9 @@ button:hover {
     <div class="box"></div>
   </div>
 
-  <button onclick="openGift()">🎁 Open Your Gift</button>
+  <button onclick="openGift()">
+    🎁 Open Your Gift
+  </button>
 
   <div class="message" id="message">
     💖 Surprise! You are very special! 💖
@@ -208,21 +263,54 @@ function openGift() {
 
   gift.classList.add("open");
 
-  setTimeout(() => {
-    message.style.display = "block";
-  }, 700);
+  /* Show prank */
 
-  // Confetti
+  setTimeout(() => {
+
+    const prank = document.createElement("div");
+
+    prank.id = "prank";
+
+    prank.innerHTML = `
+      <div class="prank-hand">🖕</div>
+      <h2>😂 GOTCHA!</h2>
+      <p>Abhi asli surprise baaki hai...</p>
+    `;
+
+    document.body.appendChild(prank);
+
+    /* Remove prank after 2.5 seconds */
+
+    setTimeout(() => {
+
+      prank.remove();
+
+      message.style.display = "block";
+
+    }, 2500);
+
+  }, 800);
+
+
+  /* Confetti */
+
   for (let i = 0; i < 100; i++) {
 
     const confetti = document.createElement("div");
 
     confetti.className = "confetti";
 
-    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.left =
+      Math.random() * 100 + "vw";
+
     confetti.style.background =
-      ["#ff1744", "#ffd700", "#00e5ff", "#7c4dff", "#69f0ae"]
-      [Math.floor(Math.random() * 5)];
+      [
+        "#ff1744",
+        "#ffd700",
+        "#00e5ff",
+        "#7c4dff",
+        "#69f0ae"
+      ][Math.floor(Math.random() * 5)];
 
     confetti.style.animationDelay =
       Math.random() * 1.5 + "s";
@@ -232,26 +320,9 @@ function openGift() {
     setTimeout(() => {
       confetti.remove();
     }, 4000);
+
   }
 
-  // Floating hearts
-  for (let i = 0; i < 25; i++) {
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDelay =
-      Math.random() * 2 + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }
 }
 
 </script>
