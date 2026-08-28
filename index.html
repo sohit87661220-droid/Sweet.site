@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Birthday Surprise 🎁</title>
+
+<title>Birthday Surprise 🎂</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -13,66 +15,49 @@
 }
 
 body{
-    width:100%;
     height:100vh;
     overflow:hidden;
-    font-family:"Trebuchet MS",Arial,sans-serif;
-    background:linear-gradient(135deg,#ffd6e7,#e8d5ff,#cdeeff);
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ffd6e7,#d9c2ff,#c5ecff);
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
 }
 
-/* Background floating hearts */
-.bg-heart{
-    position:absolute;
-    bottom:-60px;
-    font-size:25px;
-    animation:heartUp linear infinite;
-    opacity:.8;
+/* ---------- GIFT ---------- */
+
+#start{
+    z-index:10;
 }
 
-.bg-heart:nth-child(1){left:8%;animation-duration:7s;}
-.bg-heart:nth-child(2){left:20%;animation-duration:9s;animation-delay:2s;}
-.bg-heart:nth-child(3){left:35%;animation-duration:8s;animation-delay:1s;}
-.bg-heart:nth-child(4){left:55%;animation-duration:10s;animation-delay:3s;}
-.bg-heart:nth-child(5){left:72%;animation-duration:7s;animation-delay:2s;}
-.bg-heart:nth-child(6){left:90%;animation-duration:9s;animation-delay:4s;}
-
-.start{
-    position:relative;
-    z-index:5;
-}
-
-.start-text{
-    color:#8e4771;
-    font-size:20px;
+.intro{
+    color:#91466f;
+    font-size:21px;
     margin-bottom:25px;
     animation:pulse 1.5s infinite;
 }
 
 .gift{
-    position:relative;
     width:150px;
-    height:125px;
+    height:120px;
+    position:relative;
     margin:auto;
     cursor:pointer;
-    animation:giftFloat 2s infinite ease-in-out;
-    filter:drop-shadow(0 15px 15px rgba(100,50,100,.25));
+    animation:float 2s infinite;
 }
 
-.box{
+.gift-box{
     position:absolute;
     bottom:0;
     left:15px;
     width:120px;
-    height:85px;
+    height:80px;
     background:#ff6f91;
     border-radius:8px;
 }
 
-.box:before{
+.gift-box:after{
     content:"";
     position:absolute;
     left:50%;
@@ -82,18 +67,18 @@ body{
     background:#ffd166;
 }
 
-.lid{
+.gift-lid{
     position:absolute;
-    left:5px;
     top:25px;
+    left:5px;
     width:140px;
     height:30px;
-    background:#ff4f81;
+    background:#ff477e;
     border-radius:7px;
     z-index:2;
 }
 
-.lid:after{
+.gift-lid:after{
     content:"";
     position:absolute;
     left:50%;
@@ -105,325 +90,473 @@ body{
 
 .bow{
     position:absolute;
-    top:0;
+    top:-10px;
     left:50%;
     transform:translateX(-50%);
-    z-index:4;
     font-size:45px;
+    z-index:3;
 }
 
-.gift.opening{
-    animation:giftOpen .8s forwards;
-}
-
-.gift.opening .lid{
+.open .gift-lid{
     animation:lidOpen 1s forwards;
 }
 
-.gift.opening .bow{
+.open .bow{
     animation:bowOpen 1s forwards;
 }
 
-/* Surprise screen */
+.open{
+    animation:giftDisappear 1s forwards;
+}
+
+
+/* ---------- SURPRISE ---------- */
+
 #surprise{
     display:none;
     position:absolute;
     inset:0;
-    z-index:10;
-    background:linear-gradient(135deg,#ff9ec4,#c8a2ff,#9edcff);
     justify-content:center;
     align-items:center;
     overflow:hidden;
 }
 
 .content{
-    position:relative;
     z-index:20;
-    width:90%;
-    max-width:650px;
-    padding:30px 20px;
 }
 
-.small{
-    font-size:22px;
+.title{
+    font-size:48px;
     color:white;
-    margin-bottom:10px;
-    animation:fadeDown 1s ease;
-}
-
-h1{
-    font-size:60px;
-    color:white;
-    text-shadow:
-        0 4px 0 #ff6f91,
-        0 8px 20px rgba(80,40,80,.3);
-    animation:birthdayPop 1.2s cubic-bezier(.17,.67,.36,1.5);
+    text-shadow:0 5px 15px #d44b82;
+    opacity:0;
+    animation:titleShow 1s 6s forwards;
 }
 
 .name{
-    font-size:38px;
-    font-weight:bold;
-    color:#fff;
-    margin:12px 0;
-    animation:nameAppear 1.5s ease;
-}
-
-.wish{
-    background:rgba(255,255,255,.25);
-    padding:20px;
-    border-radius:25px;
+    font-size:30px;
     color:white;
-    font-size:19px;
-    line-height:1.7;
-    backdrop-filter:blur(8px);
-    animation:wishAppear 2s ease;
-    box-shadow:0 10px 30px rgba(100,50,100,.15);
+    margin:10px;
+    opacity:0;
+    animation:titleShow 1s 6.5s forwards;
 }
 
-.cake{
-    font-size:90px;
-    margin:10px;
-    animation:cakeBounce 1.5s infinite;
+
+/* ---------- CAKE ---------- */
+
+.cake-area{
+    width:300px;
+    height:300px;
+    position:relative;
+    margin:10px auto;
 }
+
+/* Plate */
+
+.plate{
+    position:absolute;
+    bottom:20px;
+    left:30px;
+    width:240px;
+    height:25px;
+    background:#ffffff;
+    border-radius:50%;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    opacity:0;
+    animation:plateShow .7s 1s forwards;
+}
+
+/* Bottom cake */
+
+.layer1{
+    position:absolute;
+    bottom:45px;
+    left:55px;
+    width:190px;
+    height:65px;
+    background:#ff9fba;
+    border-radius:10px 10px 18px 18px;
+    opacity:0;
+    animation:layerShow 1s 1.7s forwards;
+}
+
+.layer1:before{
+    content:"";
+    position:absolute;
+    top:-12px;
+    left:0;
+    width:190px;
+    height:25px;
+    background:#fff5fa;
+    border-radius:50%;
+}
+
+/* Middle layer */
+
+.layer2{
+    position:absolute;
+    bottom:105px;
+    left:75px;
+    width:150px;
+    height:55px;
+    background:#ff7fa5;
+    border-radius:10px 10px 15px 15px;
+    opacity:0;
+    animation:layerShow 1s 2.8s forwards;
+}
+
+.layer2:before{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:0;
+    width:150px;
+    height:22px;
+    background:#fff;
+    border-radius:50%;
+}
+
+/* Top cake */
+
+.layer3{
+    position:absolute;
+    bottom:155px;
+    left:95px;
+    width:110px;
+    height:45px;
+    background:#ff6f91;
+    border-radius:10px 10px 14px 14px;
+    opacity:0;
+    animation:layerShow 1s 3.9s forwards;
+}
+
+.layer3:before{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:0;
+    width:110px;
+    height:20px;
+    background:#fff5fa;
+    border-radius:50%;
+}
+
+/* Cream drops */
+
+.cream{
+    position:absolute;
+    bottom:145px;
+    left:105px;
+    font-size:35px;
+    opacity:0;
+    animation:creamShow 1s 4.6s forwards;
+}
+
+/* Candle */
+
+.candle{
+    position:absolute;
+    bottom:200px;
+    left:140px;
+    width:18px;
+    height:55px;
+    background:#ffd166;
+    border-radius:5px;
+    opacity:0;
+    animation:candleShow .7s 5s forwards;
+}
+
+/* Flame */
+
+.flame{
+    position:absolute;
+    bottom:250px;
+    left:137px;
+    font-size:30px;
+    opacity:0;
+    animation:flameShow .8s 5.5s forwards,
+              flame 1s 6.3s infinite alternate;
+}
+
+
+/* ---------- BALLOONS ---------- */
 
 .balloon{
     position:absolute;
-    bottom:-150px;
-    font-size:65px;
-    z-index:5;
-    animation:balloonFly 7s linear forwards;
+    bottom:-100px;
+    font-size:60px;
+    animation:balloonUp 7s linear forwards;
 }
 
-.b1{left:5%;animation-delay:.1s;}
-.b2{left:20%;animation-delay:.7s;}
-.b3{left:40%;animation-delay:1.2s;}
-.b4{left:60%;animation-delay:.4s;}
-.b5{left:78%;animation-delay:1s;}
-.b6{left:90%;animation-delay:1.7s;}
+.b1{left:5%;animation-delay:1s;}
+.b2{left:20%;animation-delay:1.5s;}
+.b3{left:75%;animation-delay:1.2s;}
+.b4{left:90%;animation-delay:2s;}
 
-.star{
+
+/* ---------- HEARTS ---------- */
+
+.heart{
     position:absolute;
-    font-size:30px;
-    animation:starFall 4s linear infinite;
+    bottom:-50px;
+    font-size:25px;
+    animation:heartUp 6s linear infinite;
 }
 
-.s1{left:10%;top:-50px;}
-.s2{left:30%;top:-100px;animation-delay:1s;}
-.s3{left:55%;top:-70px;animation-delay:2s;}
-.s4{left:80%;top:-120px;animation-delay:.5s;}
+.h1{left:15%;}
+.h2{left:40%;animation-delay:2s;}
+.h3{left:70%;animation-delay:1s;}
+.h4{left:85%;animation-delay:3s;}
+
+
+/* ---------- CONFETTI ---------- */
 
 .confetti{
     position:absolute;
-    top:-30px;
+    top:-40px;
     font-size:25px;
     animation:confettiFall 4s linear forwards;
-    z-index:30;
 }
 
-.sparkle{
-    position:absolute;
-    font-size:25px;
-    animation:sparkle 1.5s infinite alternate;
-}
 
-.sp1{left:15%;top:25%;}
-.sp2{right:15%;top:30%;}
-.sp3{left:10%;bottom:20%;}
-.sp4{right:10%;bottom:20%;}
+/* ---------- ANIMATIONS ---------- */
 
-@keyframes giftFloat{
-    0%,100%{transform:translateY(0) rotate(-2deg);}
-    50%{transform:translateY(-15px) rotate(2deg);}
-}
-
-@keyframes giftOpen{
-    0%{transform:scale(1);}
-    60%{transform:scale(1.2) rotate(-5deg);}
-    100%{transform:scale(0);opacity:0;}
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
 }
 
 @keyframes lidOpen{
-    100%{
-        transform:translateY(-90px) rotate(-12deg);
+    to{
+        transform:translateY(-90px) rotate(-10deg);
         opacity:0;
     }
 }
 
 @keyframes bowOpen{
-    100%{
-        transform:translate(-50%,-100px) rotate(25deg);
+    to{
+        transform:translate(-50%,-100px);
         opacity:0;
     }
 }
 
-@keyframes birthdayPop{
-    0%{transform:scale(0) rotate(-15deg);opacity:0;}
-    70%{transform:scale(1.15) rotate(5deg);}
-    100%{transform:scale(1) rotate(0);opacity:1;}
+@keyframes giftDisappear{
+    70%{transform:scale(1.15);}
+    100%{transform:scale(0);opacity:0;}
 }
 
-@keyframes nameAppear{
-    0%{opacity:0;transform:translateY(30px);}
-    100%{opacity:1;transform:translateY(0);}
-}
-
-@keyframes wishAppear{
-    0%{opacity:0;transform:scale(.7);}
-    100%{opacity:1;transform:scale(1);}
-}
-
-@keyframes cakeBounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-12px) rotate(3deg);}
-}
-
-@keyframes balloonFly{
-    0%{
-        bottom:-150px;
-        transform:translateX(0) rotate(0);
+@keyframes plateShow{
+    from{
+        opacity:0;
+        transform:scale(0);
     }
-    50%{
-        transform:translateX(50px) rotate(8deg);
+    to{
+        opacity:1;
+        transform:scale(1);
     }
-    100%{
-        bottom:120vh;
-        transform:translateX(-50px) rotate(-8deg);
+}
+
+@keyframes layerShow{
+    from{
+        opacity:0;
+        transform:translateY(80px) scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes creamShow{
+    from{
+        opacity:0;
+        transform:scale(0);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes candleShow{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes flameShow{
+    from{
+        opacity:0;
+        transform:scale(0);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes flame{
+    from{transform:scale(.8);}
+    to{transform:scale(1.2);}
+}
+
+@keyframes titleShow{
+    from{
+        opacity:0;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes balloonUp{
+    from{
+        bottom:-100px;
+        transform:translateX(0);
+    }
+    to{
+        bottom:110vh;
+        transform:translateX(70px);
     }
 }
 
 @keyframes heartUp{
-    0%{
-        bottom:-60px;
+    from{
+        bottom:-50px;
         opacity:0;
-        transform:translateX(0) scale(.5);
     }
     20%{opacity:1;}
-    100%{
+    to{
         bottom:110vh;
         opacity:0;
-        transform:translateX(80px) scale(1.4);
+        transform:translateX(70px);
     }
-}
-
-@keyframes starFall{
-    0%{transform:translateY(0) rotate(0);opacity:0;}
-    20%{opacity:1;}
-    100%{transform:translateY(100vh) rotate(360deg);opacity:0;}
 }
 
 @keyframes confettiFall{
-    0%{transform:translateY(0) rotate(0);opacity:1;}
-    100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
-}
-
-@keyframes sparkle{
-    from{transform:scale(.6) rotate(0);opacity:.4;}
-    to{transform:scale(1.4) rotate(20deg);opacity:1;}
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
 }
 
 @keyframes pulse{
-    0%,100%{transform:scale(1);}
     50%{transform:scale(1.08);}
 }
 
-@keyframes fadeDown{
-    from{opacity:0;transform:translateY(-30px);}
-    to{opacity:1;transform:translateY(0);}
-}
+
+/* Mobile */
 
 @media(max-width:600px){
-    h1{font-size:42px;}
-    .name{font-size:30px;}
-    .wish{font-size:16px;}
-    .gift{transform:scale(.9);}
+
+    .title{
+        font-size:38px;
+    }
+
+    .name{
+        font-size:25px;
+    }
+
+    .cake-area{
+        transform:scale(.85);
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- Background hearts -->
-<div class="bg-heart">❤️</div>
-<div class="bg-heart">💕</div>
-<div class="bg-heart">💗</div>
-<div class="bg-heart">💖</div>
-<div class="bg-heart">💕</div>
-<div class="bg-heart">❤️</div>
 
-<!-- Starting Gift -->
-<div class="start" id="start">
+<!-- GIFT SCREEN -->
 
-    <div class="start-text">
-        I have a little surprise for you... 💌
+<div id="start">
+
+    <div class="intro">
+        I have a special surprise for you... 💌
     </div>
 
-    <div class="gift" id="gift" onclick="openGift()">
+    <div class="gift" onclick="openGift()">
 
         <div class="bow">🎀</div>
 
-        <div class="lid"></div>
+        <div class="gift-lid"></div>
 
-        <div class="box"></div>
+        <div class="gift-box"></div>
 
     </div>
 
-    <div class="start-text" style="margin-top:25px;">
-        🎁 Tap the gift 🎁
+    <div class="intro">
+        🎁 Tap the Gift 🎁
     </div>
 
 </div>
 
 
-<!-- Surprise -->
+<!-- SURPRISE SCREEN -->
+
 <div id="surprise">
 
     <!-- Balloons -->
+
     <div class="balloon b1">🎈</div>
     <div class="balloon b2">🎈</div>
     <div class="balloon b3">🎈</div>
     <div class="balloon b4">🎈</div>
-    <div class="balloon b5">🎈</div>
-    <div class="balloon b6">🎈</div>
 
-    <!-- Stars -->
-    <div class="star s1">✨</div>
-    <div class="star s2">⭐</div>
-    <div class="star s3">✨</div>
-    <div class="star s4">💫</div>
 
-    <!-- Sparkles -->
-    <div class="sparkle sp1">✨</div>
-    <div class="sparkle sp2">💖</div>
-    <div class="sparkle sp3">⭐</div>
-    <div class="sparkle sp4">✨</div>
+    <!-- Hearts -->
+
+    <div class="heart h1">❤️</div>
+    <div class="heart h2">💖</div>
+    <div class="heart h3">💕</div>
+    <div class="heart h4">❤️</div>
+
 
     <div class="content">
 
-        <div class="small">
-            ✨ Today is your special day ✨
+        <!-- CAKE -->
+
+        <div class="cake-area">
+
+            <div class="plate"></div>
+
+            <div class="layer1"></div>
+
+            <div class="layer2"></div>
+
+            <div class="layer3"></div>
+
+            <div class="cream">🍓</div>
+
+            <div class="candle"></div>
+
+            <div class="flame">🔥</div>
+
         </div>
 
-        <h1>
-            🎂 Happy Birthday! 🎂
+
+        <h1 class="title">
+            🎂 Happy Birthday 🎂
         </h1>
 
-        <!-- Yahan naam change karo -->
+        <!-- NAME CHANGE HERE -->
+
         <div class="name">
             Dear Special One ❤️
-        </div>
-
-        <div class="cake">
-            🎂
-        </div>
-
-        <div class="wish">
-            May your life be filled with<br>
-            endless happiness, beautiful moments<br>
-            and lots of love. 💖<br><br>
-
-            Keep smiling 😊<br>
-            Keep shining ✨<br>
-            And always stay amazing! 🌸
         </div>
 
     </div>
@@ -435,57 +568,64 @@ h1{
 
 function openGift(){
 
-    const gift = document.getElementById("gift");
-    const start = document.getElementById("start");
-    const surprise = document.getElementById("surprise");
+    const gift=document.querySelector(".gift");
 
-    gift.classList.add("opening");
+    gift.classList.add("open");
 
     setTimeout(function(){
 
-        start.style.display="none";
-        surprise.style.display="flex";
+        document.getElementById("start").style.display="none";
 
-        createConfetti();
+        document.getElementById("surprise").style.display="flex";
 
-    },800);
+        makeConfetti();
+
+    },900);
 }
 
 
-function createConfetti(){
+function makeConfetti(){
 
     const symbols=[
-        "🎉","🎊","✨","💖","❤️",
-        "💕","⭐","🌸","💫","🥳"
+        "🎉",
+        "🎊",
+        "✨",
+        "💖",
+        "❤️",
+        "⭐",
+        "🌸",
+        "🥳"
     ];
 
     for(let i=0;i<100;i++){
 
-        let item=document.createElement("div");
+        let c=document.createElement("div");
 
-        item.className="confetti";
+        c.className="confetti";
 
-        item.innerHTML=
-            symbols[Math.floor(Math.random()*symbols.length)];
+        c.innerHTML=
+        symbols[Math.floor(Math.random()*symbols.length)];
 
-        item.style.left=Math.random()*100+"vw";
+        c.style.left=Math.random()*100+"vw";
 
-        item.style.fontSize=
-            (15+Math.random()*25)+"px";
+        c.style.fontSize=
+        (15+Math.random()*25)+"px";
 
-        item.style.animationDuration=
-            (2.5+Math.random()*3)+"s";
+        c.style.animationDuration=
+        (2+Math.random()*3)+"s";
 
-        item.style.animationDelay=
-            Math.random()*1.5+"s";
+        c.style.animationDelay=
+        Math.random()*2+"s";
 
         document.getElementById("surprise")
-            .appendChild(item);
+        .appendChild(c);
 
-        setTimeout(()=>{
-            item.remove();
+        setTimeout(function(){
+            c.remove();
         },6000);
+
     }
+
 }
 
 </script>
