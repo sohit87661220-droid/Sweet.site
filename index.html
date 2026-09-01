@@ -3,663 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Kashish ❤️</title>
+<title>🐶 Dog Bike Dance</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    overflow:hidden;
-    font-family:Arial, sans-serif;
-    background:#080016;
-    color:white;
+  overflow:hidden;
+  background:#87ceeb;
+  font-family:Arial,sans-serif;
+  height:100vh;
 }
 
-/* MAIN SCREEN */
 .scene{
-    width:100vw;
-    height:100vh;
-    position:relative;
-    overflow:hidden;
-    background:
-      radial-gradient(circle at 50% 40%, #42106b 0%, #130021 45%, #030008 100%);
+  width:100%;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(#69d2ff 0%,#b9f3ff 65%,#75d66b 66%);
 }
 
-/* STARS */
-.stars{
-    position:absolute;
-    inset:0;
-    background-image:
-      radial-gradient(circle, white 1px, transparent 2px),
-      radial-gradient(circle, #ff7be5 1px, transparent 2px);
-    background-size:70px 70px, 110px 110px;
-    animation:stars 8s linear infinite;
-    opacity:.7;
+/* Sun */
+.sun{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:#ffd93d;
+  border-radius:50%;
+  top:40px;
+  right:35px;
+  box-shadow:0 0 45px #ffd93d;
 }
 
-@keyframes stars{
-    from{transform:translateY(0)}
-    to{transform:translateY(70px)}
+/* Clouds */
+.cloud{
+  position:absolute;
+  width:120px;
+  height:40px;
+  background:white;
+  border-radius:50px;
+  opacity:.9;
+  animation:cloudMove 18s linear infinite;
 }
 
-/* TITLE */
-.intro{
-    position:absolute;
-    top:10%;
-    width:100%;
-    text-align:center;
-    z-index:5;
+.cloud:before,
+.cloud:after{
+  content:"";
+  position:absolute;
+  background:white;
+  border-radius:50%;
 }
 
-.intro h2{
-    font-size:clamp(22px,6vw,42px);
-    color:#ffd6fa;
-    text-shadow:0 0 15px #ff3bd4;
+.cloud:before{
+  width:55px;
+  height:55px;
+  left:20px;
+  top:-25px;
 }
 
-.intro p{
-    margin-top:10px;
-    color:#fff;
-    opacity:.8;
+.cloud:after{
+  width:70px;
+  height:70px;
+  right:15px;
+  top:-35px;
 }
 
-/* GIFT */
-.gift-area{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-45%);
-    cursor:pointer;
-    z-index:10;
+.c1{top:100px;left:-150px}
+.c2{top:180px;left:-400px;animation-delay:7s}
+
+@keyframes cloudMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(100vw + 600px))}
 }
 
-.gift{
-    width:190px;
-    height:160px;
-    position:relative;
-    animation:float 2s ease-in-out infinite;
-    filter:drop-shadow(0 20px 30px #ff00cc);
+/* Road */
+.road{
+  position:absolute;
+  bottom:0;
+  height:34%;
+  width:100%;
+  background:#444;
 }
 
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-14px)}
+.roadLine{
+  position:absolute;
+  top:48%;
+  width:200%;
+  height:12px;
+  background:repeating-linear-gradient(
+    90deg,
+    #fff 0 80px,
+    transparent 80px 160px
+  );
+  animation:road 1s linear infinite;
 }
 
-.box{
-    position:absolute;
-    bottom:0;
-    width:190px;
-    height:120px;
-    border-radius:8px;
-    background:linear-gradient(135deg,#ff277f,#8c19d6);
-    border:3px solid #ffb4ef;
-    box-shadow:inset 0 0 30px #ff7be8;
+@keyframes road{
+  from{transform:translateX(0)}
+  to{transform:translateX(-160px)}
 }
 
-.ribbon-v{
-    position:absolute;
-    left:78px;
-    width:35px;
-    height:120px;
-    background:linear-gradient(90deg,#ffd700,#fff19a,#e5a900);
+/* Bike */
+.bike{
+  position:absolute;
+  left:50%;
+  bottom:23%;
+  width:280px;
+  height:160px;
+  transform:translateX(-50%);
+  animation:bounce .35s infinite alternate;
 }
 
-.ribbon-h{
-    position:absolute;
-    top:45px;
-    width:190px;
-    height:30px;
-    background:linear-gradient(#ffd700,#fff19a,#e5a900);
+@keyframes bounce{
+  from{transform:translateX(-50%) translateY(0)}
+  to{transform:translateX(-50%) translateY(-7px)}
 }
 
-.lid{
-    position:absolute;
-    top:25px;
-    left:-10px;
-    width:210px;
-    height:48px;
-    border-radius:8px;
-    background:linear-gradient(135deg,#ff4a9d,#9d22dc);
-    border:3px solid #ffd0f4;
-    z-index:3;
-    transition:1s;
+.wheel{
+  position:absolute;
+  bottom:0;
+  width:78px;
+  height:78px;
+  border:10px solid #111;
+  border-radius:50%;
+  background:#777;
+  animation:wheel 0.35s linear infinite;
 }
 
-.bow{
-    position:absolute;
-    top:0;
-    left:75px;
-    width:45px;
-    height:35px;
-    z-index:5;
+.wheel:after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:5px;
+  background:#ddd;
+  top:50%;
+  left:0;
 }
 
-.bow:before,
-.bow:after{
-    content:"";
-    position:absolute;
-    width:45px;
-    height:30px;
-    border:8px solid #ffd700;
-    border-radius:50%;
+.w1{left:15px}
+.w2{right:15px}
+
+@keyframes wheel{
+  to{transform:rotate(360deg)}
 }
 
-.bow:before{left:-35px}
-.bow:after{left:30px}
-
-.click-text{
-    text-align:center;
-    margin-top:30px;
-    font-size:18px;
-    animation:pulse 1.2s infinite;
+.frame{
+  position:absolute;
+  width:160px;
+  height:75px;
+  left:60px;
+  bottom:40px;
+  border-bottom:12px solid #e63946;
+  border-left:12px solid #e63946;
+  transform:skew(-15deg);
 }
 
-@keyframes pulse{
-    50%{transform:scale(1.1);opacity:.5}
+.handle{
+  position:absolute;
+  right:25px;
+  bottom:92px;
+  width:55px;
+  height:12px;
+  background:#111;
+  transform:rotate(-20deg);
 }
 
-/* OPEN GIFT */
-.open .lid{
-    transform:translateY(-100px) rotate(-8deg);
+/* Dogs */
+.dog{
+  position:absolute;
+  bottom:112px;
+  width:85px;
+  height:100px;
+  z-index:5;
+  animation:dance .35s infinite alternate;
 }
 
-.open .gift{
-    animation:none;
+.dog1{left:70px}
+.dog2{right:65px;animation-delay:.15s}
+
+@keyframes dance{
+  from{transform:rotate(-8deg) translateY(0)}
+  to{transform:rotate(8deg) translateY(-16px)}
 }
 
-/* FLASH */
-.flash{
-    position:absolute;
-    inset:0;
-    background:white;
-    opacity:0;
-    pointer-events:none;
-    z-index:20;
+.body{
+  position:absolute;
+  width:58px;
+  height:62px;
+  background:#c98245;
+  border-radius:50%;
+  left:14px;
+  top:35px;
 }
 
-.flash.active{
-    animation:flash .8s;
+.head{
+  position:absolute;
+  width:58px;
+  height:55px;
+  background:#d9965b;
+  border-radius:50%;
+  left:14px;
+  top:0;
+  z-index:2;
 }
 
-@keyframes flash{
-    0%{opacity:0}
-    30%{opacity:.9}
-    100%{opacity:0}
+.ear{
+  position:absolute;
+  width:25px;
+  height:42px;
+  background:#75451f;
+  border-radius:50%;
+  top:5px;
 }
 
-/* BALLOONS */
-.balloon{
-    position:absolute;
-    bottom:-150px;
-    width:55px;
-    height:70px;
-    border-radius:50% 50% 45% 45%;
-    animation:balloonUp 7s linear forwards;
-    z-index:4;
+.ear1{left:5px;transform:rotate(-25deg)}
+.ear2{right:5px;transform:rotate(25deg)}
+
+.eye{
+  position:absolute;
+  width:8px;
+  height:10px;
+  background:#111;
+  border-radius:50%;
+  top:22px;
 }
 
-.balloon:after{
-    content:"";
-    position:absolute;
-    top:68px;
-    left:27px;
-    width:1px;
-    height:100px;
-    background:white;
-    opacity:.5;
+.eye1{left:16px}
+.eye2{right:16px}
+
+.nose{
+  position:absolute;
+  width:13px;
+  height:10px;
+  background:#111;
+  border-radius:50%;
+  left:23px;
+  top:34px;
 }
 
-@keyframes balloonUp{
-    to{
-        transform:translateY(-120vh) rotate(15deg);
-    }
+.mouth{
+  position:absolute;
+  width:20px;
+  height:10px;
+  border-bottom:3px solid #111;
+  border-radius:50%;
+  left:19px;
+  top:39px;
 }
 
-/* CAKE */
-.cake{
-    position:absolute;
-    left:50%;
-    top:58%;
-    transform:translate(-50%,-50%) scale(0);
-    z-index:12;
+/* Arms */
+.arm{
+  position:absolute;
+  width:42px;
+  height:10px;
+  background:#c98245;
+  border-radius:10px;
+  top:52px;
+  z-index:6;
 }
 
-.cake.show{
-    animation:cakeIn 1.5s cubic-bezier(.2,1.5,.4,1) forwards;
+.armL{
+  left:-18px;
+  transform:rotate(-55deg);
+  animation:armDance .3s infinite alternate;
 }
 
-@keyframes cakeIn{
-    to{transform:translate(-50%,-50%) scale(1)}
+.armR{
+  right:-18px;
+  transform:rotate(55deg);
+  animation:armDance2 .3s infinite alternate;
 }
 
-.plate{
-    width:260px;
-    height:25px;
-    border-radius:50%;
-    background:#eee;
-    box-shadow:0 0 25px white;
+@keyframes armDance{
+  to{transform:rotate(55deg)}
 }
 
-.cake-body{
-    width:220px;
-    height:115px;
-    margin:auto;
-    border-radius:15px 15px 25px 25px;
-    background:linear-gradient(#ff9ad9,#ff5eb8);
-    border:3px solid white;
-    position:relative;
+@keyframes armDance2{
+  to{transform:rotate(-55deg)}
 }
 
-.cream{
-    position:absolute;
-    top:-20px;
-    left:0;
-    width:100%;
-    height:40px;
-    background:white;
-    border-radius:50%;
+/* Legs */
+.leg{
+  position:absolute;
+  width:13px;
+  height:45px;
+  background:#75451f;
+  top:82px;
+  border-radius:10px;
 }
 
-.candle{
-    position:absolute;
-    top:-75px;
-    width:12px;
-    height:55px;
-    background:repeating-linear-gradient(
-        45deg,
-        #fff 0 7px,
-        #ff5ca8 7px 14px
-    );
-    border-radius:4px;
+.leg1{left:25px}
+.leg2{right:25px}
+
+/* Music button */
+.musicBtn{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:20;
+  border:0;
+  padding:12px 18px;
+  border-radius:30px;
+  background:#111;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 5px 15px #0005;
 }
 
-.c1{left:55px}
-.c2{left:105px}
-.c3{left:155px}
-
-.flame{
-    position:absolute;
-    top:-22px;
-    left:1px;
-    width:10px;
-    height:20px;
-    background:orange;
-    border-radius:50% 50% 50% 0;
-    transform:rotate(-45deg);
-    box-shadow:0 0 15px yellow;
-    animation:flame .4s infinite alternate;
+.title{
+  position:absolute;
+  top:75px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  color:white;
+  text-align:center;
+  text-shadow:2px 3px 5px #333;
 }
 
-@keyframes flame{
-    to{transform:rotate(-45deg) scale(1.2)}
+.title h1{
+  font-size:30px;
 }
 
-/* HAPPY BIRTHDAY */
-.birthday{
-    position:absolute;
-    top:16%;
-    width:100%;
-    text-align:center;
-    z-index:15;
-    opacity:0;
-    transform:scale(.3);
+.title p{
+  font-size:15px;
 }
 
-.birthday.show{
-    animation:titleIn 1.5s forwards;
+/* Confetti */
+.confetti{
+  position:absolute;
+  width:9px;
+  height:15px;
+  top:-30px;
+  animation:fall 3s linear infinite;
 }
 
-@keyframes titleIn{
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-.birthday .small{
-    font-size:clamp(22px,6vw,40px);
-}
-
-.birthday h1{
-    font-size:clamp(45px,13vw,100px);
-    background:linear-gradient(90deg,#ff4fd8,#ffd700,#62eaff,#ff4fd8);
-    background-size:300%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:gradient 3s linear infinite;
-    text-shadow:0 0 30px #ff31d2;
-}
-
-@keyframes gradient{
-    to{background-position:300%}
-}
-
-/* MESSAGE */
-.message{
-    position:absolute;
-    left:50%;
-    bottom:7%;
-    transform:translateX(-50%) scale(0);
-    width:min(88%,500px);
-    padding:20px;
-    border-radius:25px;
-    text-align:center;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.4);
-    backdrop-filter:blur(12px);
-    z-index:30;
-}
-
-.message.show{
-    animation:messageIn 1.2s forwards;
-}
-
-@keyframes messageIn{
-    to{transform:translateX(-50%) scale(1)}
-}
-
-.message h3{
-    color:#ff9bea;
-    font-size:25px;
-    margin-bottom:10px;
-}
-
-.message p{
-    line-height:1.6;
-    font-size:16px;
-}
-
-/* FIREWORK */
-.firework{
-    position:absolute;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    z-index:8;
-}
-
-.particle{
-    position:absolute;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    animation:explode 1.2s forwards;
-}
-
-@keyframes explode{
-    to{
-        transform:translate(var(--x),var(--y));
-        opacity:0;
-    }
-}
-
-/* HIDE */
-.hidden{
-    display:none;
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="scene" id="scene">
+<div class="scene">
 
-    <div class="stars"></div>
+  <div class="sun"></div>
 
-    <div class="intro" id="intro">
-        <h2>✨ A Special Surprise ✨</h2>
-        <p>Someone special has a birthday today...</p>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+
+  <button class="musicBtn" onclick="playMusic()">
+    🎵 Play Song
+  </button>
+
+  <div class="title">
+    <h1>🐶 DOGGY DANCE 🐶</h1>
+    <p>Bike ride + Dance Party 🏍️💃</p>
+  </div>
+
+  <!-- Bike -->
+  <div class="bike">
+
+    <div class="wheel w1"></div>
+    <div class="wheel w2"></div>
+
+    <div class="frame"></div>
+    <div class="handle"></div>
+
+    <!-- Dog 1 -->
+    <div class="dog dog1">
+      <div class="head">
+        <div class="ear ear1"></div>
+        <div class="ear ear2"></div>
+        <div class="eye eye1"></div>
+        <div class="eye eye2"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <div class="body"></div>
+      <div class="arm armL"></div>
+      <div class="arm armR"></div>
+      <div class="leg leg1"></div>
+      <div class="leg leg2"></div>
     </div>
 
-    <!-- GIFT -->
-    <div class="gift-area" id="giftArea" onclick="startSurprise()">
-        <div class="gift" id="gift">
-            <div class="lid"></div>
-            <div class="box"></div>
-            <div class="ribbon-v"></div>
-            <div class="ribbon-h"></div>
-            <div class="bow"></div>
-        </div>
-        <div class="click-text">🎁 Tap the Gift 🎁</div>
+    <!-- Dog 2 -->
+    <div class="dog dog2">
+      <div class="head">
+        <div class="ear ear1"></div>
+        <div class="ear ear2"></div>
+        <div class="eye eye1"></div>
+        <div class="eye eye2"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <div class="body"></div>
+      <div class="arm armL"></div>
+      <div class="arm armR"></div>
+      <div class="leg leg1"></div>
+      <div class="leg leg2"></div>
     </div>
 
-    <div class="flash" id="flash"></div>
+  </div>
 
-    <!-- CAKE -->
-    <div class="cake" id="cake">
-        <div class="cake-body">
-            <div class="cream"></div>
-
-            <div class="candle c1">
-                <div class="flame"></div>
-            </div>
-
-            <div class="candle c2">
-                <div class="flame"></div>
-            </div>
-
-            <div class="candle c3">
-                <div class="flame"></div>
-            </div>
-        </div>
-        <div class="plate"></div>
-    </div>
-
-    <!-- TITLE -->
-    <div class="birthday" id="birthday">
-        <div class="small">🎉 Happy Birthday 🎉</div>
-        <h1>Kashish</h1>
-    </div>
-
-    <!-- MESSAGE -->
-    <div class="message" id="message">
-        <h3>💖 A Little Message For You 💖</h3>
-        <p>
-            May your birthday be filled with endless happiness,
-            beautiful moments and lots of reasons to smile. ✨
-            <br><br>
-            Keep smiling, keep shining and always stay amazing! 🌸💫
-            <br><br>
-            🎂 Happy Birthday Kashish! ❤️
-        </p>
-    </div>
+  <div class="road">
+    <div class="roadLine"></div>
+  </div>
 
 </div>
 
+<audio id="song" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+function playMusic(){
 
-const scene = document.getElementById("scene");
-const giftArea = document.getElementById("giftArea");
-const flash = document.getElementById("flash");
-const cake = document.getElementById("cake");
-const birthday = document.getElementById("birthday");
-const message = document.getElementById("message");
+  const song=document.getElementById("song");
+  const btn=document.querySelector(".musicBtn");
 
-let started = false;
-
-/* START EVERYTHING */
-function startSurprise(){
-
-    if(started) return;
-    started = true;
-
-    /* open gift */
-    scene.classList.add("open");
-
-    /* hide click instruction */
-    giftArea.querySelector(".click-text").style.opacity="0";
-
-    /* light burst */
-    setTimeout(()=>{
-        flash.classList.add("active");
-        createConfetti();
-        createBalloons();
-        createFireworks();
-    },700);
-
-    /* gift disappears */
-    setTimeout(()=>{
-        giftArea.style.opacity="0";
-        giftArea.style.transform="translate(-50%,-45%) scale(0)";
-        giftArea.style.transition="1s";
-    },1300);
-
-    /* cake appears */
-    setTimeout(()=>{
-        cake.classList.add("show");
-    },1600);
-
-    /* birthday text */
-    setTimeout(()=>{
-        birthday.classList.add("show");
-        createFireworks();
-    },3000);
-
-    /* message */
-    setTimeout(()=>{
-        message.classList.add("show");
-    },5200);
+  if(song.paused){
+    song.play();
+    btn.innerHTML="🔊 Music ON";
+  }else{
+    song.pause();
+    btn.innerHTML="🔇 Music OFF";
+  }
 }
 
+/* Confetti */
+for(let i=0;i<45;i++){
 
-/* BALLOONS */
-function createBalloons(){
+  let c=document.createElement("div");
 
-    const colors=[
-        "#ff4fa3",
-        "#7c5cff",
-        "#00d9ff",
-        "#ffd23f",
-        "#ff6b6b",
-        "#a855f7",
-        "#22d3ee"
-    ];
+  c.className="confetti";
 
-    for(let i=0;i<18;i++){
+  c.style.left=Math.random()*100+"%";
+  c.style.animationDelay=Math.random()*3+"s";
+  c.style.animationDuration=(2+Math.random()*3)+"s";
 
-        const b=document.createElement("div");
-
-        b.className="balloon";
-
-        b.style.left=Math.random()*100+"%";
-        b.style.background=
-            colors[Math.floor(Math.random()*colors.length)];
-
-        b.style.animationDelay=(Math.random()*2)+"s";
-
-        b.style.transform=
-            `scale(${.7+Math.random()*.6})`;
-
-        scene.appendChild(b);
-
-        setTimeout(()=>{
-            b.remove();
-        },9000);
-    }
+  document.querySelector(".scene").appendChild(c);
 }
-
-
-/* CONFETTI */
-function createConfetti(){
-
-    const colors=[
-        "#ff3cac",
-        "#ffd700",
-        "#00e5ff",
-        "#7cff00",
-        "#ff6b6b",
-        "#a855f7"
-    ];
-
-    for(let i=0;i<160;i++){
-
-        const c=document.createElement("div");
-
-        c.style.position="absolute";
-        c.style.width="8px";
-        c.style.height="14px";
-
-        c.style.left=Math.random()*100+"%";
-        c.style.top="-20px";
-
-        c.style.background=
-            colors[Math.floor(Math.random()*colors.length)];
-
-        c.style.zIndex="25";
-
-        c.style.transform=
-            `rotate(${Math.random()*360}deg)`;
-
-        c.style.transition=
-            `top ${2+Math.random()*3}s linear,
-             transform ${2+Math.random()*3}s linear`;
-
-        scene.appendChild(c);
-
-        setTimeout(()=>{
-            c.style.top="110vh";
-            c.style.transform=
-                `rotate(${Math.random()*1000}deg)`;
-        },50);
-
-        setTimeout(()=>{
-            c.remove();
-        },5500);
-    }
-}
-
-
-/* FIREWORKS */
-function createFireworks(){
-
-    for(let f=0;f<8;f++){
-
-        setTimeout(()=>{
-
-            const x=15+Math.random()*70;
-            const y=15+Math.random()*45;
-
-            for(let i=0;i<35;i++){
-
-                const p=document.createElement("div");
-
-                p.className="particle";
-
-                p.style.left=x+"%";
-                p.style.top=y+"%";
-
-                const angle=Math.random()*Math.PI*2;
-                const distance=60+Math.random()*130;
-
-                p.style.setProperty(
-                    "--x",
-                    Math.cos(angle)*distance+"px"
-                );
-
-                p.style.setProperty(
-                    "--y",
-                    Math.sin(angle)*distance+"px"
-                );
-
-                p.style.background=
-                    `hsl(${Math.random()*360},100%,65%)`;
-
-                scene.appendChild(p);
-
-                setTimeout(()=>{
-                    p.remove();
-                },1300);
-            }
-
-        },f*500);
-    }
-}
-
 </script>
 
 </body>
